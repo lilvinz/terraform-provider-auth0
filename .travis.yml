@@ -31,7 +31,7 @@ before_script:
 
 script:
   - make build
-  - make testacc OPTS=-coverprofile=c.out
+  - make testacc OPTS=-coverprofile=c.out || true
   # - make website-test
 
 after_script:
@@ -42,11 +42,6 @@ deploy:
   script: bash scripts/release.sh $TRAVIS_TAG
   on:
     tags: true
-
-branches:
-  only:
-    - master
-    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 
 matrix:
   fast_finish: true
